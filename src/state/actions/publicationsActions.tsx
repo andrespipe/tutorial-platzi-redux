@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { PUBLICATION_ACTIONS, IPublication } from '../../types/publicationType';
+import { PUBLICATIONS_ACTIONS, IPublication } from '../../types/publicationsTypes';
 
 export const getPublications= () => async (dispatch: Function) => {
   dispatch({
-    type: PUBLICATION_ACTIONS.LOADING,
+    type: PUBLICATIONS_ACTIONS.LOADING,
     payload: [],
   });
   try {
@@ -11,19 +11,34 @@ export const getPublications= () => async (dispatch: Function) => {
     const publications = promise.data;
     dispatch({
       payload: publications,
-      type: PUBLICATION_ACTIONS.GET_PUBLICATIONS,
+      type: PUBLICATIONS_ACTIONS.GET_PUBLICATIONS,
     });
   } catch(error) {
     dispatch({
       payload: error.message,
-      type: PUBLICATION_ACTIONS.ERROR,
+      type: PUBLICATIONS_ACTIONS.ERROR,
+    });
+  }
+}
+
+export const getPublicationById = () => (dispatch: Function) => {
+  dispatch({
+    type: PUBLICATIONS_ACTIONS.LOADING,
+    payload: [],
+  });
+  try{
+    
+  } catch(error) {
+    dispatch({
+      payload: error.message,
+      type: PUBLICATIONS_ACTIONS.ERROR,
     });
   }
 }
 
 export const getPublicationsByUser = (userId: number) => async (dispatch: Function, getState: Function) => {
   dispatch({
-    type: PUBLICATION_ACTIONS.LOADING,
+    type: PUBLICATIONS_ACTIONS.LOADING,
     payload: [],
   });
   try {
@@ -36,13 +51,13 @@ export const getPublicationsByUser = (userId: number) => async (dispatch: Functi
 
     dispatch({
       payload: publications,
-      type: PUBLICATION_ACTIONS.GET_PUBLICATIONS_BY_USER,
+      type: PUBLICATIONS_ACTIONS.GET_PUBLICATIONS_BY_USER,
     });
   } catch(error) {
     console.error(error);
     dispatch({
       payload: error.message,
-      type: PUBLICATION_ACTIONS.ERROR,
+      type: PUBLICATIONS_ACTIONS.ERROR,
     });
   }
 }

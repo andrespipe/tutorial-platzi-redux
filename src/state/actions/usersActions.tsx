@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { USER_ACTIONS, IUser } from "../../types/userType";
+import { USER_ACTIONS, IUser } from "../../types/userTypes";
 
 export const getUsers = () => async (dispatch: Function) => {
   dispatch({

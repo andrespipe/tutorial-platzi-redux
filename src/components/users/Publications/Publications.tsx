@@ -2,10 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import * as usersActions from '../../../state/actions/usersActions';
 import * as publicationsActions from '../../../state/actions/publicationsActions';
-import { IUser } from '../../../types/userType';
-import { IPublicationProps, IPublication } from '../../../types/publicationType';
+import { IUser } from '../../../types/userTypes';
+import { IPublicationsProps, IPublication } from '../../../types/publicationsTypes';
+import { Link } from 'react-router-dom';
 
-class Publications extends React.Component<IPublicationProps, {}> {
+class Publications extends React.Component<IPublicationsProps, {}> {
 
   async componentDidMount() {
     if (!this.props.usersReducer.users || !this.props.usersReducer.users.length) {
@@ -18,7 +19,7 @@ class Publications extends React.Component<IPublicationProps, {}> {
   }
 
   getUser(): IUser | undefined {
-    const userKey = this.props.match.params.key;
+    const userKey = this.props.match.params.userId;
     if(this.props.usersReducer.users) {
       const user = this.props.usersReducer.users[userKey];
       return user;
@@ -37,24 +38,22 @@ class Publications extends React.Component<IPublicationProps, {}> {
 
   getPublicationTable = (publications: IPublication[]) => {
     return (
-      <table>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            publications.map(publication => (
-              <tr key={ publication.id }>
-                <td>{ publication.title }</td>
-                <td>{ publication.body }</td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
+      <div className="row">
+        {
+          publications.map(publication =>
+            <div className="col-4 mb-4" key={ publication.id }>
+              <div className="card">
+                <div className="card-body">
+                  <Link className="card-title" to={`/publication/${publication.id}`}>
+                    <h5>{ publication.title }</h5>
+                  </Link>
+                  <div className="card-text">{ publication.body }</div>
+                </div>
+              </div>
+            </div>
+          )
+        }
+      </div>
     );
   }
 
@@ -65,7 +64,7 @@ class Publications extends React.Component<IPublicationProps, {}> {
       if (publications && publications.length) {
         return (
           <div>
-            <h1>Publication { this.props.match.params.key }</h1>
+            <h3 className="pt-4 pb-4">{ user.name } publications</h3>
             { this.getPublicationTable(publications) }
           </div>
         );
@@ -74,7 +73,7 @@ class Publications extends React.Component<IPublicationProps, {}> {
 
     return (
       <div>
-        <h1>No Publication found</h1>
+        <h1 className="pt-4 pb-4">No Publication found</h1>
       </div>
     );
   }

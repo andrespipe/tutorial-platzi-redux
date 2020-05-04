@@ -1,8 +1,9 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Users from './users/Users';
-import NavBar from './navBar/NavBar';
+import NavigationBar from './NavigationBar/NavigationBar';
 import Tasks from './tasks/Tasks';
+import Publication from './users/Publication/Publication';
 import Publications from './users/Publications/Publications';
 
 class App extends React.Component<{}, {}> {
@@ -11,11 +12,13 @@ class App extends React.Component<{}, {}> {
     return (
     <div>
       <BrowserRouter>
-        <NavBar />
-
-        <Route path="/" component={Users} exact></Route>
-        <Route path="/publications/:key" component={Publications}></Route>
-        <Route path="/tasks" component={Tasks}></Route>
+        <NavigationBar />
+        <div className="container">
+          <Route path="/" component={Users} exact></Route>
+          <Route path="/publications/:userId" component={Publications}></Route>
+          <Route path="/publication/:publicationId" component={Publication}></Route>
+          <Route path="/tasks" component={Tasks}></Route>
+        </div>
       </BrowserRouter>
     </div>
     )

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import './Users.css';
-import { IUserProps } from '../../types/userType';
+import { IUserProps } from '../../types/userTypes';
 import * as usersActions from '../../state/actions/usersActions';
 import UsersTable from './UsersTable/UsersTable';
 

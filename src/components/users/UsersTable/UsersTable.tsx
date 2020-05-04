@@ -1,5 +1,5 @@
 import React from 'react';
-import { IUserProps } from '../../../types/userType';
+import { IUserProps } from '../../../types/userTypes';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 const UsersTable = (props?: IUserProps) => {
@@ -21,12 +21,12 @@ const UsersTable = (props?: IUserProps) => {
   }
 
   return (
-    <table>
+    <table className="table table-striped table-hover">
       <thead>
         <tr>
-          <th>Nombre</th>
-          <th>Correo</th>
-          <th>Enlace</th>
+          <th>Namne</th>
+          <th>Email</th>
+          <th>URL</th>
         </tr>
       </thead>
       <tbody>

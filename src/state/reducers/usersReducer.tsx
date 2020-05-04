@@ -1,4 +1,4 @@
-import { USER_ACTIONS, IUserTable } from '../../types/userType';
+import { USER_ACTIONS, IUserTable } from '../../types/userTypes';
 
 const INITIAL_STATE: IUserTable = {
   error : '',

@@ -1,4 +1,4 @@
-import { IPublications, PUBLICATION_ACTIONS } from "../../types/publicationType";
+import { IPublications, PUBLICATIONS_ACTIONS } from "../../types/publicationsTypes";
 
 const INITIAL_STATE: IPublications = {
   error : '',
@@ -6,25 +6,25 @@ const INITIAL_STATE: IPublications = {
   publications: [],
 };
 
-const publicationsReducer = (state: IPublications = INITIAL_STATE, action: { type: PUBLICATION_ACTIONS; payload: any; }) => {
+const publicationsReducer = (state: IPublications = INITIAL_STATE, action: { type: PUBLICATIONS_ACTIONS; payload: any; }) => {
   switch(action.type) {
-    case PUBLICATION_ACTIONS.GET_PUBLICATIONS:
+    case PUBLICATIONS_ACTIONS.GET_PUBLICATIONS:
       return {
         ...state,
         isLoading: true,
         publications: action.payload,
       };
-    case PUBLICATION_ACTIONS.LOADING:
+    case PUBLICATIONS_ACTIONS.LOADING:
       return {
         ...state,
         isLoading: true,
       };
-    case PUBLICATION_ACTIONS.ERROR:
+    case PUBLICATIONS_ACTIONS.ERROR:
       return {
         ...state,
         error: action.payload,
       };
-    case PUBLICATION_ACTIONS.GET_PUBLICATIONS_BY_USER:
+    case PUBLICATIONS_ACTIONS.GET_PUBLICATIONS_BY_USER:
       return {
         ...state,
         isLoading: true,
